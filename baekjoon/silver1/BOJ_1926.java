@@ -67,25 +67,25 @@ public class BOJ_1926 {
 
     }
 
-    static void bfs(int x, int y) {
+    static void bfs(int y, int x) {
 
-        visited[x][y] = true;
+        visited[y][x] = true;
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[] {x, y});
+        queue.offer(new int[] {y, x});
 
         while(!queue.isEmpty()){
             int[] current = queue.poll();
-            int nowX = current[0];
-            int nowY = current[1];
+            int nowY = current[0];
+            int nowX = current[1];
 
             for(int[] direction : directions) {
-                int moveX = nowX + direction[0];
-                int moveY = nowY + direction[1];
+                int moveY = nowY + direction[0];
+                int moveX = nowX + direction[1];
 
-                if(moveX >= 0 && moveY >= 0 && moveX < n && moveY < m && paper[moveX][moveY] == 1 && !visited[moveX][moveY]) {
-                    visited[moveX][moveY] = true;
+                if(moveX >= 0 && moveY >= 0 && moveX < m && moveY < n && paper[moveY][moveX] == 1 && !visited[moveY][moveX]) {
+                    visited[moveY][moveX] = true;
                     area++;
-                    queue.offer(new int[] {moveX, moveY});
+                    queue.offer(new int[] {moveY, moveX});
                 }
             }
         }
